@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:343843543599:android:89b9c9c75e977726",
+        "mobilesdk_app_id": "1:343843543599:android:12ddef7d808aea36",
         "android_client_info": {
-          "package_name": "com.kinitoapps.easynotes"
+          "package_name": "com.kinitoapps.quicknotes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "343843543599-ad31td49nlj6t3casq2td59kgi8qjbn8.apps.googleusercontent.com",
+          "client_id": "343843543599-ehnpci20d1kcrahdnnh94mfh4017hkcb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.kinitoapps.easynotes",
+            "package_name": "com.kinitoapps.quicknotes",
             "certificate_hash": "0451c3a195b20fd92562a5cd52ac2d3d7d243a05"
           }
         },
@@ -44,37 +44,6 @@
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:343843543599:android:12ddef7d808aea36",
-        "android_client_info": {
-          "package_name": "com.kinitoapps.quicknotes"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "343843543599-5teg78ivrd2kcl8ur78qk9u98mpd7l0m.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCMJAKS4zmaHjZP_CANVILUDwGcPZnDbKI"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
