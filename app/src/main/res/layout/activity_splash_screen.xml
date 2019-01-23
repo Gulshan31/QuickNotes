@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:layout_marginTop="76dp"
+                android:textColor="@color/bt_purple_dark"
+                android:shadowColor="@color/colorAccent"
+                android:shadowDx="3"
+                android:shadowDy="3"
+                android:shadowRadius="2"
+                android:text="@string/app_name"/>
+    <ImageView
+        android:id="@+id/splashscreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center"/>
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:layout_alignBottom="@id/splashscreen"
+            android:text="@string/slogan"
+            android:layout_marginBottom="104dp"/>
+        </RelativeLayout>
+
+

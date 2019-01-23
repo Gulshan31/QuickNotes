@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="196dp"
+    android:background="@drawable/ic_launcher"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="52dp"
+        android:layout_marginLeft="0dp"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="85dp"
+        android:id="@+id/profile_pic"
+        android:src="@drawable/profilepic"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cool Guy"
+        android:layout_below="@id/profile_pic"
+        android:textColor="@color/bt_purple"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">QuickNotes</string>
+
+
+    // code for login items
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+
+    <string name="hint_name">Fullname</string>
+
+    <string name="btn_login">LOGIN</string>
+
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_skip">SKIP</string>
+    <string name="view_class_text">SELECT CLASS</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="no_network_connection">Could not Connect to internet, Please first connect to internet</string>
+    <string name="network_connection">Network Detected, You Can Continue</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+
+    <string name="class_9th">9th Class</string>
+    <string name="class_10th">10th Class</string>
+
+    <string name="app_folder_name">EasyNotes</string>
+    <string name="spinner_title">Select Class</string>
+    <string name="slogan">Let easy be easy</string>
+
+
+    <!-- Navigation Drawer menu labels -->
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string name="title_activity_main_drawer">MainDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

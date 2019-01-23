@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+
+    package="com.kinitoapps.quicknotes">
+
+     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.kinitoapps.quicknotes.ForCache"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher_bg"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_launcher_bg"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.kinitoapps.quicknotes.splashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.kinitoapps.quicknotes.PdfDownloader" />
+        <activity android:name="com.kinitoapps.quicknotes.LoginActivity" />
+        <activity android:name="com.kinitoapps.quicknotes.RegisterActivity" />
+        <activity android:name="com.kinitoapps.quicknotes.Index" />
+        <activity android:name="com.kinitoapps.quicknotes.RecyclerViewActivity" />
+        <activity android:name="com.kinitoapps.quicknotes.DownloadTask" />
+        <activity android:name="com.kinitoapps.quicknotes.ChooseClass" />
+        <activity
+            android:name="com.kinitoapps.quicknotes.MainDrawerActivity"
+            android:label="@string/title_activity_main_drawer"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <receiver
+            android:name="com.kinitoapps.quicknotes.ConnectivityReceiver"
+            android:label="ConnectivityReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

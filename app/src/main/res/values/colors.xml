@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff5349</color>
+    <color name="colorPrimaryDark">#FF0000</color>
+    <color name="colorAccent">#0d98ba</color>
+    <color name="shading_card_view">#dde0db </color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="input_login">#222222</color>
+
+    <color name="input_register">#888888</color>
+    <color name="darkGray">#6c6c6c</color>
+
+    <color name="bt_purple_dark">#ff8855aa</color>
+    <color name="bt_purple">#ffaa66cc</color>
+    <color name="bt_white">#fff</color>
+    <color name="text_shadow">#7F000000</color>
+</resources>
