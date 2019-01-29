@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private ProgressDialog progress;
     private DatabaseReference forUsers;
     private SignInButton signInButton;
-    static TextView tv_check_connection;
+ //   static TextView tv_check_connection;
 
 
 
@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
      protected void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_register);
-        tv_check_connection= findViewById(R.id.tv_check_connection);
+     //   tv_check_connection= findViewById(R.id.tv_check_connection);
         mNetworkReceiver = new ConnectivityReceiver();
         registerNetworkBroadcastForNougat();
         if (ContextCompat.checkSelfPermission(RegisterActivity.this,
@@ -127,12 +127,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.custom_google_client_id))
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         inputFullName = findViewById(R.id.name);
-        Button skipButton = findViewById(R.id.btnSkip);
+       // Button skipButton = findViewById(R.id.btnSkip);
          inputEmail = findViewById(R.id.email);
          inputPassword = findViewById(R.id.password);
         Button btnRegister = findViewById(R.id.btnRegister);
@@ -142,13 +142,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         ProgressDialog pDialog = new ProgressDialog(this);
          pDialog.setCancelable(false);
 
-       skipButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               startActivity(new Intent(RegisterActivity.this,ChooseClass.class));
-               finish();
-           }
-       });
+//       skipButton.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View view) {
+//               startActivity(new Intent(RegisterActivity.this,ChooseClass.class));
+//               finish();
+//           }
+//       });
          // Register Button Click event
          btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -193,28 +193,28 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
 
-    public static void dialog(boolean value){
-
-        if(value){
-            tv_check_connection.setText(R.string.network_connection);
-            tv_check_connection.setBackgroundColor(Color.WHITE);
-            tv_check_connection.setTextColor(Color.BLACK);
-
-            Handler handler = new Handler();
-            Runnable delayrunnable = new Runnable() {
-                @Override
-                public void run() {
-                    tv_check_connection.setVisibility(View.GONE);
-                }
-            };
-            handler.postDelayed(delayrunnable, 3000);
-        }else {
-            tv_check_connection.setVisibility(View.VISIBLE);
-            tv_check_connection.setText(R.string.no_network_connection);
-            tv_check_connection.setBackgroundColor(Color.RED);
-            tv_check_connection.setTextColor(Color.WHITE);
-        }
-    }
+//    public static void dialog(boolean value){
+//
+//        if(value){
+//            tv_check_connection.setText(R.string.network_connection);
+//            tv_check_connection.setBackgroundColor(Color.WHITE);
+//            tv_check_connection.setTextColor(Color.BLACK);
+//
+//            Handler handler = new Handler();
+//            Runnable delayrunnable = new Runnable() {
+//                @Override
+//                public void run() {
+//                    tv_check_connection.setVisibility(View.GONE);
+//                }
+//            };
+//            handler.postDelayed(delayrunnable, 3000);
+//        }else {
+//            tv_check_connection.setVisibility(View.VISIBLE);
+//            tv_check_connection.setText(R.string.no_network_connection);
+//            tv_check_connection.setBackgroundColor(Color.RED);
+//            tv_check_connection.setTextColor(Color.WHITE);
+//        }
+//    }
 
 
 

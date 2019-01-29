@@ -18,7 +18,7 @@ import com.kinitoapps.quicknotes.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button btnLogin,skipButton;
+    private Button btnLogin;
     private Button btnLinkToRegister;
     private EditText inputEmail;
     private EditText inputPassword;
@@ -32,18 +32,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         progressDialog=new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
-        skipButton = findViewById(R.id.btnSkip);
+       // skipButton = findViewById(R.id.btnSkip);
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.btnLogin);
         btnLinkToRegister = findViewById(R.id.btnLinkToRegisterScreen);
-        skipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,ChooseClass.class));
-                finish();
-            }
-        });
+//        skipButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(LoginActivity.this,ChooseClass.class));
+//                finish();
+//            }
+//        });
         btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             // start user profile activity
                             progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this, ChooseClass.class);
+                            Intent intent = new Intent(LoginActivity.this, MainDrawerActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             finish();
                             startActivity(intent);

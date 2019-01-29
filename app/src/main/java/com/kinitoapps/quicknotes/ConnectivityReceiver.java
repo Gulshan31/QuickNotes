@@ -7,7 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import static com.kinitoapps.quicknotes.RegisterActivity.dialog;
+//import static com.kinitoapps.quicknotes.RegisterActivity.dialog;
 
 /**
  * Created by HP on 09-12-2017.
@@ -21,10 +21,10 @@ public class ConnectivityReceiver extends BroadcastReceiver {
         try
         {
             if (isOnline(context)) {
-                dialog(true);
+  //              dialog(true);
                 Log.e("keshav", "Online Connect Intenet ");
             } else {
-               dialog(false);
+    //           dialog(false);
                 Log.e("keshav", "Conectivity Failure !!! ");
             }
         } catch (NullPointerException e) {

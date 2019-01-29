@@ -5,8 +5,9 @@
     // code for login items
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-
-    <string name="hint_name">Fullname</string>
+    <string name="conf_password">Re-Enter</string>
+    <string name="hint_name">Name</string>
+    <string name="custom_google_client_id">343843543599-5teg78ivrd2kcl8ur78qk9u98mpd7l0m.apps.googleusercontent.com</string>
 
     <string name="btn_login">LOGIN</string>
 
