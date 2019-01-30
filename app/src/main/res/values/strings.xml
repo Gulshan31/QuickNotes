@@ -6,6 +6,9 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="conf_password">Re-Enter</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
     <string name="hint_name">Name</string>
     <string name="custom_google_client_id">343843543599-5teg78ivrd2kcl8ur78qk9u98mpd7l0m.apps.googleusercontent.com</string>
 
@@ -34,5 +37,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <string name="err_msg_cnf_password">Password doen not match</string>
 
 </resources>

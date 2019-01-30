@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kinitoapps.quicknotes.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -90,10 +96,32 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             // start user profile activity
                             progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this, MainDrawerActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            finish();
-                            startActivity(intent);
+
+
+
+                            DatabaseReference userData = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("userInfo");
+                            userData.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Users users = dataSnapshot.getValue(Users.class);
+                                 String   studentGrade = users.getStudentGrade();
+                                    Log.v("Gulshan",studentGrade);
+                                    Intent intent = new Intent(LoginActivity.this, MainDrawerActivity.class);
+                                    intent.putExtra("class_name",studentGrade);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    finish();
+                                    startActivity(intent);
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+
                         }
                         else {
                             Toast.makeText(LoginActivity.this," "+ task.getException(),Toast.LENGTH_SHORT).show();

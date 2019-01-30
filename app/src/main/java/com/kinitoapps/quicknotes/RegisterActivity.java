@@ -13,13 +13,17 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
      private static final String TAG = RegisterActivity.class.getSimpleName();
     private EditText inputFullName;
      private EditText inputEmail;
-     private EditText inputPassword;
+     private EditText inputPassword,inputCnfPassword;
     private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     private FirebaseUser firebaseUser;
@@ -65,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private String studentGrade;
     private ProgressDialog progress;
     private DatabaseReference forUsers;
-    private SignInButton signInButton;
+    private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPassword,inputLayoutCnfPassword;
  //   static TextView tv_check_connection;
 
 
@@ -104,8 +108,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         }
 
 
-
-        signInButton = findViewById(R.id.sign_in_button);
+        inputLayoutName = findViewById(R.id.input_layout_name);
+        inputLayoutEmail =  findViewById(R.id.input_layout_email);
+        inputLayoutPassword =  findViewById(R.id.input_layout_password);
+        inputLayoutCnfPassword= findViewById(R.id.input_layout_cnf_password);
+        SignInButton signInButton = findViewById(R.id.sign_in_button);
         mAuth=FirebaseAuth.getInstance();
         progressDialog=new ProgressDialog(RegisterActivity.this);
         forUsers= FirebaseDatabase.getInstance().getReference().child("Users");
@@ -133,6 +140,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         inputFullName = findViewById(R.id.name);
        // Button skipButton = findViewById(R.id.btnSkip);
+        inputCnfPassword = findViewById(R.id.cnf_password);
          inputEmail = findViewById(R.id.email);
          inputPassword = findViewById(R.id.password);
         Button btnRegister = findViewById(R.id.btnRegister);
@@ -149,6 +157,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 //               finish();
 //           }
 //       });
+
+        inputFullName.addTextChangedListener(new MyTextWatcher(inputFullName));
+        inputEmail.addTextChangedListener(new MyTextWatcher(inputEmail));
+        inputPassword.addTextChangedListener(new MyTextWatcher(inputPassword));
          // Register Button Click event
          btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -250,23 +262,32 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private  void registerUser() {
          String email = inputEmail.getText().toString().trim();
          String pass_word = inputPassword.getText().toString().trim();
+         String cnf_password = inputCnfPassword.getText().toString().trim();
          final String user_name = inputFullName.getText().toString();
-         if (TextUtils.isEmpty(user_name)) {
+         if (!validateName()) {
              // email is empty
              Toast.makeText(RegisterActivity.this, "please select  name", Toast.LENGTH_SHORT).show();
              return;// to stop the function from executation.
          }
 
 
-         if (TextUtils.isEmpty(email)) {
+         if (!validateEmail()) {
              // email is empty
              Toast.makeText(RegisterActivity.this, "please enter email", Toast.LENGTH_SHORT).show();
              return;
              // to stop the function from executation.
          }
-         if (TextUtils.isEmpty(pass_word)) {
+         if (!validatePassword()) {
              // email is empty
              Toast.makeText(RegisterActivity.this, "please enter password", Toast.LENGTH_SHORT).show();
+             return;
+         }
+         if (!validateCnfPassword()){
+             return;
+         }
+         if (!(cnf_password.equals(pass_word)))
+         {
+             Toast.makeText(RegisterActivity.this, "password does not match", Toast.LENGTH_SHORT).show();
              return;
          }
          // here if everything ok the user will be register
@@ -301,6 +322,66 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
      }
+
+    private boolean validateName() {
+        if (inputFullName.getText().toString().trim().isEmpty()) {
+            inputLayoutName.setError(getString(R.string.err_msg_name));
+            requestFocus(inputFullName);
+            return false;
+        } else {
+            inputLayoutName.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validateEmail() {
+        String email = inputEmail.getText().toString().trim();
+
+        if (email.isEmpty() || !isValidEmail(email)) {
+            inputLayoutEmail.setError(getString(R.string.err_msg_email));
+            requestFocus(inputEmail);
+            return false;
+        } else {
+            inputLayoutEmail.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validatePassword() {
+        if (inputPassword.getText().toString().trim().isEmpty()) {
+            inputLayoutPassword.setError(getString(R.string.err_msg_password));
+            requestFocus(inputPassword);
+            return false;
+        } else {
+            inputLayoutPassword.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean validateCnfPassword() {
+        if (inputCnfPassword.getText().toString().trim().isEmpty()) {
+            inputLayoutCnfPassword.setError(getString(R.string.err_msg_cnf_password));
+            requestFocus(inputCnfPassword);
+            return false;
+        } else {
+            inputLayoutPassword.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private static boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -436,4 +517,27 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    private class MyTextWatcher implements TextWatcher {
+
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    }
 }
