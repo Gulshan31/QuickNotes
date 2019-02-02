@@ -23,15 +23,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.kinitoapps.quicknotes.R;
+import com.kinitoapps.quicknotes.data.DataRecordAdapter;
 
 import java.util.ArrayList;
 
 public class MainDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     RecyclerView recyclerView;
     String class_name;
+    String section = "";
+    String subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,6 @@ public class MainDrawerActivity extends AppCompatActivity
         toolbar.setTitle("QuickNotes");
         NavigationView navigationView = findViewById(R.id.nav_view);
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
-
-
-        if (user!=null) {
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-
             setSupportActionBar(toolbar);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -53,14 +49,12 @@ public class MainDrawerActivity extends AppCompatActivity
             toggle.syncState();
 
             navigationView.setNavigationItemSelectedListener(this);
-        }
-        else{
 
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        }
         recyclerView = findViewById(R.id.main_activity_recycler_view);
-        class_name = getIntent().getStringExtra("class_name");
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(class_name.trim());
+        class_name = getIntent().getStringExtra("Class");
+        subject = getIntent().getStringExtra("Subject");
+        section = getIntent().getStringExtra("Section");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(class_name.trim()).child(subject.trim()).child(section.trim());
         databaseReference.keepSynced(true);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override

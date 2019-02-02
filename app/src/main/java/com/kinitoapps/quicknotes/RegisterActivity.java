@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -29,7 +27,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -47,6 +44,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.kinitoapps.quicknotes.network.detector.ConnectivityReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -308,7 +306,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                              Users user = new Users(personName, personPhoto,  userDesc,studentGrade);
                              userData.setValue(user);
 
-                             Intent intent = new Intent(RegisterActivity.this, ChooseClass.class);
+                             Intent intent = new Intent(RegisterActivity.this, MainDrawerActivity.class);
                              intent.putExtra("class_name",studentGrade);
                              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                              startActivity(intent);

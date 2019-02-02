@@ -50,7 +50,7 @@ public class splashScreen extends AppCompatActivity {
                                    Users users = dataSnapshot.getValue(Users.class);
                                    studentGrade = users.getStudentGrade();
                                    Log.v("Gulshan",studentGrade);
-                                   Intent mainIntent = new Intent(splashScreen.this,MainDrawerActivity.class);
+                                   Intent mainIntent = new Intent(splashScreen.this,Home.class);
                                    mainIntent.putExtra("class_name",studentGrade);
                                    splashScreen.this.startActivity(mainIntent);
                                    splashScreen.this.finish();

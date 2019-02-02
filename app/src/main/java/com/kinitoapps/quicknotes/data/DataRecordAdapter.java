@@ -1,4 +1,4 @@
-package com.kinitoapps.quicknotes;
+package com.kinitoapps.quicknotes.data;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kinitoapps.quicknotes.ItemClickListener;
 import com.kinitoapps.quicknotes.R;
+import com.kinitoapps.quicknotes.RecyclerViewActivity;
 
 import java.util.ArrayList;
 
@@ -52,7 +54,7 @@ public class DataRecordAdapter extends RecyclerView.Adapter<DataRecordAdapter.Vi
             public void onClick(View view, int position, boolean isLongClick) {
                 if (isLongClick) {
 
-                    Intent intent = new Intent(context,RecyclerViewActivity.class);
+                    Intent intent = new Intent(context, RecyclerViewActivity.class);
                     intent.putExtra("class", items.get(position));
                     intent.putExtra("c_name",c_name);
                     context.startActivity(intent);

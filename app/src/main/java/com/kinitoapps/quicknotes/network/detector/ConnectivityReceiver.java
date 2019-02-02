@@ -1,4 +1,4 @@
-package com.kinitoapps.quicknotes;
+package com.kinitoapps.quicknotes.network.detector;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

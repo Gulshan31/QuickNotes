@@ -1,4 +1,4 @@
-package com.kinitoapps.quicknotes;
+package com.kinitoapps.quicknotes.network.detector;
 
 import com.google.firebase.database.FirebaseDatabase;
 
