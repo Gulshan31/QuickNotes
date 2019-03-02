@@ -27,7 +27,7 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
     //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-auth:16.1.0'
-
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'

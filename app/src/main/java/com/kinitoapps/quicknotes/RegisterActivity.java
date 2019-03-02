@@ -451,7 +451,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                             Log.v(TAG, "signInWithCredential:success");
 
                             progress.dismiss();
-                            Intent intent = new Intent(RegisterActivity.this, MainDrawerActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, Home.class);
                             intent.putExtra("class_name",studentGrade);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);

@@ -28,7 +28,9 @@
     <string name="app_folder_name">EasyNotes</string>
     <string name="spinner_title">Select Class</string>
     <string name="slogan">Let easy be easy</string>
-
+    <string name="player_error">Error initializing YouTube player: %s</string>
+    <string name="seek_to">Jump To</string>
+    <string name="seek_to_hint">Seconds</string>
 
     <!-- Navigation Drawer menu labels -->
 

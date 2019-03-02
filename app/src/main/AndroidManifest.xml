@@ -16,7 +16,8 @@
         android:roundIcon="@drawable/ic_launcher_bg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home"></activity>
+        <activity android:name=".VideoView"></activity>
+        <activity android:name=".Home" />
         <activity android:name=".splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,13 +27,13 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kinitoapps.quicknotes.PdfDownloader" />
-        <activity android:name="com.kinitoapps.quicknotes.LoginActivity" />
-        <activity android:name="com.kinitoapps.quicknotes.RegisterActivity" />
-        <activity android:name="com.kinitoapps.quicknotes.Index" />
-        <activity android:name="com.kinitoapps.quicknotes.RecyclerViewActivity" />
-        <activity android:name="com.kinitoapps.quicknotes.DownloadTask" />
-        <activity android:name="com.kinitoapps.quicknotes.ChooseClass" />
+        <activity android:name=".PdfDownloader" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Index" />
+        <activity android:name=".RecyclerViewActivity" />
+        <activity android:name=".DownloadTask" />
+        <activity android:name=".ChooseClass" />
         <activity
             android:name=".MainDrawerActivity"
             android:label="@string/title_activity_main_drawer"

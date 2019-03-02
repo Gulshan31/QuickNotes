@@ -202,12 +202,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Toast.makeText(Home.this,"Physics",Toast.LENGTH_LONG).show();
         }
         if (v == sub_chem) {
-            Intent intent = new Intent(Home.this,MainDrawerActivity.class);
-            intent.putExtra("Subject","Chemistry");
-            intent.putExtra("Class",class_name);
-            intent.putExtra("Section","Theory");
+            Intent intent = new Intent(Home.this,VideoView.class);
+//            intent.putExtra("Subject","Chemistry");
+//            intent.putExtra("Class",class_name);
+//            intent.putExtra("Section","Theory");
             startActivity(intent);
-            Toast.makeText(Home.this,"Chemistry",Toast.LENGTH_LONG).show();
+//            Toast.makeText(Home.this,"Chemistry",Toast.LENGTH_LONG).show();
         }
         if (v == sub_bio) {
             Intent intent = new Intent(Home.this,MainDrawerActivity.class);
