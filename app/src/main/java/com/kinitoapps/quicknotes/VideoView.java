@@ -44,7 +44,7 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
     YouTubeThumbnailView thumbnailView;
     YouTubeThumbnailLoader thumbnailLoader;
     RecyclerView VideoList;
-    String Title;
+    List<String> Title;
     RecyclerView.Adapter adapter;
     List<Drawable> thumbnailViews;
     List<String> VideoId;
@@ -54,28 +54,27 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_view);
 
-
         thumbnailViews = new ArrayList<>();
+        VideoId = new ArrayList<>();
+        Title = new ArrayList<>();
+
         VideoList =  findViewById(R.id.youtube_playlist_recycler_view);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this);
         VideoList.setLayoutManager(layoutManager);
-        adapter=new VideoListAdapter();
+
         VideoList.setAdapter(adapter);
-        VideoId = new ArrayList<>();
         youTubeView =  findViewById(R.id.youtube_player);
         youTubeView.initialize(YoutubePlayConfig.YOUTUBE_API_KEY, this);
-
+        adapter=new VideoListAdapter();
         thumbnailView = new YouTubeThumbnailView(this);
         thumbnailView.initialize(YoutubePlayConfig.YOUTUBE_API_KEY, this);
 
-        new JsonTask().execute("https://www.googleapis.com/youtube/v3/videos?id=M8rrQHGTIbM&key=AIzaSyDWE2dPve6-KyTQ9HBD2cjwnNv8LFEE18g\n" +
-                "&part=snippet,contentDetails,statistics,status");
 
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, final YouTubePlayer youTubePlayer, boolean b) {
-
+        Log.v("TASK","KAB CALL ");
         Player=youTubePlayer;
         Player.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
             @Override
@@ -87,7 +86,7 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
 
         if (!b){
 
-            youTubePlayer.cuePlaylist("PLbu_fGT0MPsupSwt-hp6N1pUOxa-Mit_S");
+            youTubePlayer.cueVideo("M8rrQHGTIbM");
         }
 
 
@@ -125,17 +124,20 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
 
         if (thumbnailLoader.hasNext())
             thumbnailLoader.next();
-
         adapter.notifyDataSetChanged();
+
     }
 
 
     @Override
     public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
-        Log.v("Check",s);
+        Log.v("TASK1","KAB CALL ");
+        new JsonTask().execute("https://www.googleapis.com/youtube/v3/videos?id="+s+"&key=AIzaSyDWE2dPve6-KyTQ9HBD2cjwnNv8LFEE18g\n" +
+                "&part=snippet,contentDetails,statistics,status");
+        Log.v("TASK1","thumbnail se pehle ");
         thumbnailViews.add(youTubeThumbnailView.getDrawable());
         VideoId.add(s);
-        add();
+
 
 
     }
@@ -150,10 +152,15 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
 
     @Override
     public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
+        Log.v("TASK2","KAB CALL ");
+
         thumbnailLoader = youTubeThumbnailLoader;
         youTubeThumbnailLoader.setOnThumbnailLoadedListener(VideoView.this);
 
         thumbnailLoader.setPlaylist("PLbu_fGT0MPsupSwt-hp6N1pUOxa-Mit_S");
+
+//
+
     }
 
     @Override
@@ -187,7 +194,7 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
         @Override
         public void onBindViewHolder(VideoListAdapter.MyView holder, final int position) {
             holder.imageView.setImageDrawable(thumbnailViews.get(position));
-            holder.titleView.setText(Title);
+            holder.titleView.setText(Title.get(position));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -205,14 +212,10 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
 
     private class JsonTask extends AsyncTask<String, String, String> {
 
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
 
         protected String doInBackground(String... params) {
 
-
+            Log.v("Taskkkk1","kuch ");
             HttpURLConnection connection = null;
             BufferedReader reader = null;
 
@@ -243,9 +246,10 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
 
                         JSONObject c = items.getJSONObject(0);
                         // Phone node is JSON Object
-                        JSONObject phone = c.getJSONObject("snippet");
-                        String title = phone.getString("title");
-                        Title = title;
+                        JSONObject snippet = c.getJSONObject("snippet");
+                        String title = snippet.getString("title");
+                        Title.add(title);
+                        add();
                     Log.d("title",title);
 
 
@@ -275,11 +279,6 @@ public class VideoView extends  YouTubeBaseActivity implements YouTubePlayer.OnI
             return null;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-        }
 
 
 
