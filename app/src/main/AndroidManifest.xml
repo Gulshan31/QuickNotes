@@ -16,7 +16,7 @@
         android:roundIcon="@drawable/ic_launcher_bg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VideoView"></activity>
+        <activity android:name=".VideoView"/>
         <activity android:name=".Home" />
         <activity android:name=".splashScreen">
             <intent-filter>
@@ -27,13 +27,13 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <activity android:name=".PdfDownloader" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Index" />
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".DownloadTask" />
-        <activity android:name=".ChooseClass" />
         <activity
             android:name=".MainDrawerActivity"
             android:label="@string/title_activity_main_drawer"
@@ -48,6 +48,7 @@
                     tools:ignore="BatteryLife" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>
